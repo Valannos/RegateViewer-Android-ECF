@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.afpa.dahouet.model.Regate;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.sql.Date;
 import java.util.Calendar;
@@ -59,7 +60,7 @@ public class ListRegateAdapter extends ArrayAdapter<Regate> {
             public void onClick(View v) {
 
                 Intent intent = new Intent(getContext(), RegateDetailsViewer.class);
-                Gson gson = new Gson();
+                Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
                 String regJSON = gson.toJson(regate);
                 intent.putExtra("REGATE_JSON", regJSON);
                 getContext().startActivity(intent);
@@ -85,7 +86,7 @@ public class ListRegateAdapter extends ArrayAdapter<Regate> {
                 } else {
 
                     Intent intent = new Intent(getContext(), RegateResultsViewer.class);
-                    Gson gson = new Gson();
+                    Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").create();
                     String regJSON = gson.toJson(regate);
                     intent.putExtra("REGATE_JSON", regJSON);
                     getContext().startActivity(intent);

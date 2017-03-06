@@ -11,6 +11,7 @@ import com.afpa.dahouet.model.Participation;
 import com.afpa.dahouet.model.Regate;
 import com.afpa.dahouet.provider.ParticipationProvider;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -34,7 +35,7 @@ public class RegateDetailsViewer extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_regate_details);
         String jsonRegate = intent.getExtras().getString("REGATE_JSON");
-        Regate regate = new Gson().fromJson(jsonRegate, Regate.class);
+        Regate regate = new GsonBuilder().setDateFormat("yyyy-MM-dd").create().fromJson(jsonRegate, Regate.class);
 
         textView_RegateDetails_Title = (TextView) findViewById(R.id.textView_Regate_id);
         textView_RegateDetails_Title.setText(textView_RegateDetails_Title.getText() + " " + regate.getId());

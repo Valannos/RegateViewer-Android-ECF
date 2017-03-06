@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 
 import com.afpa.dahouet.model.Regate;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.BufferedInputStream;
@@ -51,7 +52,7 @@ public class RegateProvider extends AsyncTask<Void, Void, List<Regate>> {
             System.out.println(urlConnection.getResponseCode());
             if (urlConnection.getResponseCode() == HttpURLConnection.HTTP_OK) {
 
-                System.out.println("Connection established, retrieving Challenge data");
+                System.out.println("Connection established, retrieving Regate data");
                 InputStream stream = new BufferedInputStream(urlConnection.getInputStream());
                 BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
 
@@ -71,7 +72,7 @@ public class RegateProvider extends AsyncTask<Void, Void, List<Regate>> {
             urlConnection.disconnect();
 
 
-            Gson gson = new Gson();
+            Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
             String regJSON = builder.toString();
             Type type = new TypeToken<List<Regate>>() {
             }.getType();

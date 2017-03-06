@@ -68,7 +68,7 @@ public class ChallengeProvider extends AsyncTask<Void, Void, Challenge> {
             }
             urlConnection.disconnect();
 
-            Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").create();
+            Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
             challenge = gson.fromJson(builder.toString(), Challenge.class);
 
 

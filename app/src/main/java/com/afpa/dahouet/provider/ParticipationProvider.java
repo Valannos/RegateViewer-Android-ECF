@@ -31,7 +31,7 @@ public class ParticipationProvider extends AsyncTask<String, Void, List<Particip
     @Override
     protected List<Participation> doInBackground(String... params) {
 
-        Regate regate = new Gson().fromJson(params[0], Regate.class);
+        Regate regate = new GsonBuilder().setDateFormat("yyyy-MM-dd").create().fromJson(params[0], Regate.class);
         List<Participation> participations = null;
 
         if (params[1] == "NO_RESULT") {
@@ -76,7 +76,7 @@ public class ParticipationProvider extends AsyncTask<String, Void, List<Particip
 
                 }
                 urlConnection.disconnect();
-                Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").create();
+                Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
                 String partJSON = builder.toString();
                 Type type = new TypeToken<List<Participation>>() {
                 }.getType();
@@ -131,7 +131,7 @@ public class ParticipationProvider extends AsyncTask<String, Void, List<Particip
 
                 }
                 urlConnection.disconnect();
-                Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").create();
+                Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
                 String partJSON = builder.toString();
                 Type type = new TypeToken<List<Participation>>() {
                 }.getType();
